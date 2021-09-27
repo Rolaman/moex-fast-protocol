@@ -2,7 +2,6 @@ package futurelistener
 
 import (
 	"github.com/kdt-wolf/moex-fast/internal/structs"
-	"github.com/kdt-wolf/moex-fast/internal/web"
 	"github.com/shopspring/decimal"
 	"log"
 	"sync"
@@ -52,9 +51,8 @@ func NewStorage(depth uint32, subscribedSecIDs map[uint64]bool) *Storage {
 	return s
 }
 
-func (s *Storage) GetOrderBook(secID uint64) *web.BookView {
-	book := s.secIDOrderBook[secID]
-	return web.SortedToView(book)
+func (s *Storage) GetOrderBook(secID uint64) *structs.SortedBook {
+	return s.secIDOrderBook[secID]
 }
 
 func (s *Storage) GetAvailableBooks() []uint64 {

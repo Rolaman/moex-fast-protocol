@@ -6,7 +6,6 @@ import (
 	decoder "github.com/kdt-wolf/moex-fast/internal/decoder/stock"
 	"github.com/kdt-wolf/moex-fast/internal/protocol"
 	"github.com/kdt-wolf/moex-fast/internal/structs"
-	"github.com/kdt-wolf/moex-fast/internal/web"
 	"log"
 	"sync"
 )
@@ -175,12 +174,11 @@ func (s *Listener) ProcessIncrementBytes(i int, bytes []byte) {
 	}
 }
 
-func (s *Listener) GetStockOrderBook(symbol string, session string) *web.BookView {
-	book := s.storage.GetStockOrderBook(structs.SecurityId{
+func (s *Listener) GetStockOrderBook(symbol string, session string) *structs.Book {
+	return s.storage.GetStockOrderBook(structs.SecurityId{
 		Symbol:    symbol,
 		SessionId: session,
 	})
-	return web.ToView(book)
 }
 
 func (s *Listener) GetAvailableStockBook() map[string]decoder.WOLSFOND {

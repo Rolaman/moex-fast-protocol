@@ -3,7 +3,6 @@ package currency
 import (
 	decoder "github.com/kdt-wolf/moex-fast/internal/decoder/stock"
 	"github.com/kdt-wolf/moex-fast/internal/structs"
-	"github.com/kdt-wolf/moex-fast/internal/web"
 	"log"
 	"sync"
 )
@@ -129,7 +128,6 @@ func (s *Storage) GetAllCurrencyOrderBook() map[string]*decoder.WOLSCURR {
 	return s.debugStockOrderBook
 }
 
-func (s *Storage) GetStockOrderBook(symbol string) *web.BookView {
-	b := s.secIDOrderBook[symbol]
-	return web.ToView(b)
+func (s *Storage) GetStockOrderBook(symbol string) *structs.Book {
+	return s.secIDOrderBook[symbol]
 }

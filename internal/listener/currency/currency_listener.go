@@ -5,7 +5,7 @@ import (
 	"github.com/kdt-wolf/moex-fast/internal/config"
 	decoder "github.com/kdt-wolf/moex-fast/internal/decoder/stock"
 	"github.com/kdt-wolf/moex-fast/internal/protocol"
-	"github.com/kdt-wolf/moex-fast/internal/web"
+	"github.com/kdt-wolf/moex-fast/internal/structs"
 	"log"
 	"sync"
 )
@@ -173,7 +173,7 @@ func (s *Listener) ListenIncrements() {
 
 }
 
-func (s *Listener) GetStockOrderBook(symbol string) *web.BookView {
+func (s *Listener) GetStockOrderBook(symbol string) *structs.Book {
 	return s.storage.GetStockOrderBook(symbol)
 }
 

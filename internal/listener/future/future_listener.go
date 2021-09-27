@@ -5,7 +5,7 @@ import (
 	"github.com/kdt-wolf/moex-fast/internal/config"
 	decoder "github.com/kdt-wolf/moex-fast/internal/decoder/future"
 	"github.com/kdt-wolf/moex-fast/internal/protocol"
-	"github.com/kdt-wolf/moex-fast/internal/web"
+	"github.com/kdt-wolf/moex-fast/internal/structs"
 	"log"
 	"sync"
 )
@@ -76,7 +76,7 @@ func New(options *config.InstrumentOption, secIDs map[uint64]bool) (*Listener, e
 	}, nil
 }
 
-func (s *Listener) GetOrderBook(secID uint64) *web.BookView {
+func (s *Listener) GetOrderBook(secID uint64) *structs.SortedBook {
 	return s.storage.GetOrderBook(secID)
 }
 
